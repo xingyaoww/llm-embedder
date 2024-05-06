@@ -19,10 +19,24 @@ cd models
 # Example: download baai/bge-m3
 git lfs install
 git clone https://huggingface.co/BAAI/bge-m3
+# model will be saved to models/bge-m3
 ```
 
 ## Convert model to TorchScript
 
 ```bash
 scripts/create_torch_serve_archive.sh
+```
+
+## Build the docker Image
+
+```bash
+docker build -t ghcr.io/xingyaoww/torchserve-embedder:0.10.0-gpu-bge-m3 .
+```
+
+## Serve the converted model
+
+```bash
+# If only want to expose 
+docker run -it --rm --gpus '"device=0"' ghcr.io/xingyaoww/torchserve-embedder:0.10.0-gpu-bge-m3
 ```
