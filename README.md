@@ -94,3 +94,26 @@ If you see something like the followings, it means your embedding deployment is 
   ]
 ]
 ```
+
+## Vector Database
+
+Start qdrant instance.
+
+```bash
+docker pull qdrant/qdrant
+
+mkdir -p data/qdrant/data
+mkdir -p data/qdrant/snapshots
+docker run -p 6333:6333 \
+    -v $(pwd)/data/qdrant/data:/qdrant/storage \
+    -v $(pwd)/data/qdrant/snapshots:/qdrant/snapshots \
+    qdrant/qdrant
+```
+
+Access qdrant instance in Python:
+
+```bash
+pip install qdrant-client
+```
+
+Check `scripts/notebooks/encode_large_scale_data.ipynb` for an example of how to encode large-scale dataset into qdrant for query and evaluation.
